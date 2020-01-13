@@ -1,0 +1,78 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ID Card - {{object.name}} ({{object.roll }})</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  
+      <link rel="stylesheet" href="{% static 'css/id_card.css' %}" >
+
+      
+
+  
+</head>
+
+<body oncontextmenu="return false;">
+  <!-- Card widget -->
+<div class="card">
+  
+  <!-- Face 2 --> 
+  <div class="card-face face-2"><!-- Back trigger -->
+    <div class = "share_header"> <h1 style="font-size:20px; color:white;">Share</h1> 
+    <button class="card-face__back-button" data-card-back="data-card-back">
+        <img src="{% static 'assets/back.png' %}" width="19" height="19" draggable="false" />
+      </button>
+    </div>
+    
+    <img src= "{{object.qrcode}}" style="margin-bottom: -6%; margin-top: -18%;"  draggable="false"/>
+
+    <h1 style="font-size:20px; color: black;">{{object.roll}}</h1>
+    <br>
+    
+    <h1 style="padding: 10px;margin-top: -10%;font-size:13px; color: black; text-align : center;">Download the more detailed ID Card for {{object.name}} in PDF format.</h1>
+    <h1 style="font-size:13px; color: black; text-align: center">Password for PDF is Date of Birth <br> (eg: DD-MM-YYYY)</h1>
+    <button class= "button_generate" onclick="location.href='{{object.pdf}}'" type="button">
+      Download PDF</button>
+    
+    <h2 class="card-face__credits">ID-Card Generator™</h2>
+  </div>
+  
+  
+  <!-- Face 1 -->
+  <div class="card-face face-1"><!-- Menu trigger -->
+    <div class = "college_header"> <img src="{% static 'assets/logo.png' %}" width="30" height="30" draggable="false"/> <h1 class ="college_title">RAM LAL ANAND COLLEGE
+      <br><marquee width="90%">( A Delhi University maintained institution ) |  Benito Juarez Road, New Delhi- 110 021 | Phone : 011-24112557, Fax : 011-24112151 </marquee></h1> </div>
+
+    <button class="card-face__menu-button" data-card-menu="data-card-menu">
+      <img src="{% static 'assets/new.png' %}" width="18" height="18" draggable="false"/>
+    </button><!-- Avatar -->
+
+    <div class="card-face__avatar"><!-- User avatar -->
+      <img src= " {{object.image}} " width="120" height="120" draggable="false"/>
+    </div><!-- Name -->
+
+    <h2 class="card-face__name">{{object.name}}</h2>
+    <!-- Title -->
+    <span class="card-face__title">{{object.get_course_display}}</span>
+    <span class="card-face__title">{{object.get_year_display}}</span>
+
+  
+    <img src="{{ object.barcode }}" style="margin-bottom: -6%; margin-top: 8%;"  draggable="false"/><br>
+    <span style="font-size: 12px; color: black;margin-top: 0%;" >{{object.roll}}</span>
+
+    <!-- Cart Footer -->
+    <h2 class="card-face__credits">ID-Card Generator™</h2>
+    <!--Insert New Buttons here-->
+  </div>
+</div>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+    <script src="{% static 'js/id_card.js' %}" ></script>
+
+</body>
+</html>
